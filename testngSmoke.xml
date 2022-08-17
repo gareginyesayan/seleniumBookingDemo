@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Test Suite">
+    <listeners>
+        <listener class-name="com.bookdemo.utilities.ListenerClass"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Smoke">
+
+        <groups>
+            <run>
+                <include name="Smoke"></include>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.bookdemo.testcases.HomeStaysPageTest"/>
+            <class name="com.bookdemo.testcases.LoginPageTest"/>
+            <class name="com.bookdemo.testcases.FlightsPageTest"/>
+            <class name="com.bookdemo.testcases.SearchResultPageTest"/>
+            <class name="com.bookdemo.testcases.PropertyPageTest"/>
+        </classes>
+    </test>
+
+</suite>
