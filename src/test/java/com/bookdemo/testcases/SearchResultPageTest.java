@@ -95,7 +95,8 @@ public class SearchResultPageTest extends BaseClass {
     // Selecting the filter.
     // Getting prices for all properties on the page.
     // Verifying that all peices are in the selected budget limits.
-    // This test can fail because of not valid index. Requirements to number of budget filter are needed. To make indexes valid change destination
+    // This test can fail because of not valid index. Requirements to number of budget filters are needed. 
+    // Actually SkipException should be used in case if provided index is not valid. But for now to make indexes valid change destination
     @Test (groups = "Regression", dataProvider = "Indexes", dataProviderClass = DataProviders.class)
     public void test003_VerifyBudgetFilter(int index)  {
         Log.startTestCase("test003_VerifyBudgetFilter with the index: " + index);
