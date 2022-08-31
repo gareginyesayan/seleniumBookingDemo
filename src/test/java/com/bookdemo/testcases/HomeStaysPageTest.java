@@ -27,7 +27,7 @@ public class HomeStaysPageTest extends BaseClass {
     @BeforeMethod(groups = {"Smoke", "Regression"})
     public void setup() {
         launchApp();
-        staysPage = new HomeStaysPage();
+        staysPage = new HomeStaysPage(driver);
         softAssert = new SoftAssert();
 
     }

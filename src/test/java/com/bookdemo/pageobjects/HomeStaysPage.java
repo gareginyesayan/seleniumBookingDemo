@@ -3,6 +3,7 @@ package com.bookdemo.pageobjects;
 import com.bookdemo.actiondriver.MyActions;
 import com.bookdemo.base.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeStaysPage extends BaseClass {
+//public class HomeStaysPage extends BaseClass {
+public class HomeStaysPage  {
 
 
     //    LOCATORS =========================================================================================================
@@ -65,11 +67,13 @@ public class HomeStaysPage extends BaseClass {
     //=================================================================================================================
 
     private MyActions myActions = new MyActions();
+    private WebDriver driver;
 
 
     //  CONSTRUCTOR ========================================================================================================
-    public HomeStaysPage() {
-        PageFactory.initElements(driver, this);
+    public HomeStaysPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
         System.out.println(driver.getTitle());
 
     }
@@ -84,14 +88,14 @@ public class HomeStaysPage extends BaseClass {
     public LoginPage clickOnSignIn() {
 
         myActions.click(driver, SignInBtn);
-        return new LoginPage();
+        return new LoginPage(driver);
     }
 
     //Navigating to Flights  page
     public FlightsPage clickOnFlightsBtn() {
 
         myActions.click(driver, flightsBtn);
-        return new FlightsPage();
+        return new FlightsPage(driver);
     }
 
     //Input destination by entering some key and selecting suggested choice by index
@@ -182,7 +186,7 @@ public class HomeStaysPage extends BaseClass {
         inputDestination(destination, 0);
         setDates(checkin, checkout);
         searchBtn.click();
-        return new SearchResultPage();
+        return new SearchResultPage(driver);
     }
 
 

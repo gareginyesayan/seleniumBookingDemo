@@ -1,11 +1,14 @@
 package com.bookdemo.pageobjects;
 
 import com.bookdemo.base.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BaseClass {
+public class LoginPage{
+
+    private WebDriver driver;
 
     @FindBy(name = "username")
     private WebElement usernameInput;
@@ -14,8 +17,9 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//h1[text()='Sign in or create an account']")
     private WebElement headerText;
     //  CONSTRUCTOR ========================================================================================================
-    public LoginPage() {
-        PageFactory.initElements(driver, this);
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
         System.out.println("Now on page:" + driver.getTitle());
     }
 

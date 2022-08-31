@@ -33,7 +33,7 @@ public class SearchResultPageTest extends BaseClass {
         launchApp();
         checkinAddToCurrentDate = 1;
         nights =3;
-        staysPage = new HomeStaysPage();
+        staysPage = new HomeStaysPage(driver);
         checkin = LocalDate.now().plusDays(checkinAddToCurrentDate);
         checkout = LocalDate.now().plusDays(checkinAddToCurrentDate+nights);
         destination = "Philadelphia";

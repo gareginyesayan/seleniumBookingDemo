@@ -6,6 +6,7 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.bookdemo.actiondriver.MyActions;
 import com.bookdemo.base.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -13,6 +14,11 @@ import org.testng.ITestResult;
 public class ListenerClass extends ExtentManager implements ITestListener {
 
     MyActions myActions = new MyActions();
+//    private WebDriver driver;
+//
+//    public ListenerClass(WebDriver driver) {
+//        this.driver = driver;
+//    }
 
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getName());
@@ -31,7 +37,8 @@ public class ListenerClass extends ExtentManager implements ITestListener {
                         MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
                 test.log(Status.FAIL,
                         MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
-                String imgPath = myActions.screenShot(BaseClass.driver, result.getName());
+                String imgPath = myActions.screenShot(driver, result.getName());
+//                String imgPath = myActions.screenShot(BaseClass.driver, result.getName());
 
                 test.addScreenCaptureFromPath(imgPath);
                 test.fail("ScreenShot is Attached", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());

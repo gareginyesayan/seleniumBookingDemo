@@ -36,7 +36,7 @@ public class PropertyPageTest extends BaseClass {
     @BeforeMethod(groups = {"Smoke", "Regression"})
     public void setup() {
         launchApp();
-        staysPage = new HomeStaysPage();
+        staysPage = new HomeStaysPage(driver);
         checkin = LocalDate.now().plusDays(2);
         checkout = LocalDate.now().plusDays(2+nights);
         resultsPage = staysPage.search(destination, checkin, checkout);

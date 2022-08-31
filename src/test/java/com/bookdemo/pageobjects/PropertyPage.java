@@ -1,12 +1,14 @@
 package com.bookdemo.pageobjects;
 
 import com.bookdemo.base.BaseClass;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PropertyPage extends BaseClass {
+public class PropertyPage {
 
+    private WebDriver driver;
 
 //    @FindBy(xpath = "//h2[@class='pp-header__title']")
     @FindBy(css = "#wrap-hotelpage-top h2")
@@ -23,8 +25,9 @@ public class PropertyPage extends BaseClass {
     private WebElement availableRoomsTable;
 
     //  CONSTRUCTOR ========================================================================================================
-    public PropertyPage() {
-        PageFactory.initElements(driver, this);
+    public PropertyPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
         System.out.println("Now on page:" + driver.getTitle());
     }
 

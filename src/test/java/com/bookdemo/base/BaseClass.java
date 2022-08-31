@@ -17,7 +17,7 @@ import java.util.Properties;
 public class BaseClass {
 
     private static Properties prop;
-    public static WebDriver driver;
+    protected  WebDriver driver;
 
 
 
