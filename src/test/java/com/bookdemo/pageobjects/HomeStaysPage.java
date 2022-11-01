@@ -8,8 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +26,13 @@ public class HomeStaysPage  {
     private WebElement staysBtn;
     @FindBy(xpath = "//span[contains(text(), 'Flights')]/ancestor::a")
     private WebElement flightsBtn;
-    @FindBy(css = "input#ss")
+    @FindBy(css = "input[name='ss']")
     private WebElement destinationInput;
-    @FindBy(css = "ul[aria-label='List of suggested destinations ']")
+//    @FindBy(css = "ul[aria-label='List of suggested destinations ']")
+//    private WebElement suggestedDestinations;
+//    @FindBy(css = "label.sb-destination-label-sr+ul")
+//    private WebElement suggestedDestinations;
+    @FindBy(xpath = "//input[@name='ss']/../following-sibling::ul[1]")
     private WebElement suggestedDestinations;
     @FindBy(css = "div.xp__dates-inner:not(.xp__dates__checkin):not(.xp__dates__checkout)")
     private WebElement calendarInput;
@@ -70,6 +77,7 @@ public class HomeStaysPage  {
     private WebDriver driver;
 
 
+
     //  CONSTRUCTOR ========================================================================================================
     public HomeStaysPage(WebDriver driver) {
         this.driver = driver;
@@ -101,6 +109,7 @@ public class HomeStaysPage  {
     //Input destination by entering some key and selecting suggested choice by index
     public String inputDestination(String destination, int choice) {
         destinationInput.clear();
+//        destinationInput.click();;
         destinationInput.sendKeys(destination);
         List<WebElement> listOfSuggestedDestinations = suggestedDestinations.findElements(By.tagName("li"));
         listOfSuggestedDestinations.get(choice).click();
