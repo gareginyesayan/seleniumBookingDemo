@@ -17,9 +17,11 @@ import java.util.Properties;
 public class BaseClass {
 
     private static Properties prop;
-    protected  WebDriver driver;
+    protected static WebDriver driver;
 
-
+    public static WebDriver getDriver() {
+        return driver;
+    }
 
     @BeforeSuite(groups = { "Smoke", "Regression" })
     public void loadConfig() {

@@ -7,7 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.bookdemo.base.BaseClass;
 
 
-public class ExtentManager extends BaseClass {
+public class ExtentManager {
 
     // public static ExtentHtmlReporter htmlReporter;
     public static ExtentSparkReporter htmlReporter;// = new ExtentSparkReporter("Spark.html");
