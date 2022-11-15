@@ -112,7 +112,7 @@ public class HomeStaysPageTest extends BaseClass {
     }
 
     //-----------------------------------------------------------------------------------------------------------------------
-    //Verifying yser can add children. Possible values 0 - 10
+    //Verifying user can add children. Possible values 0 - 10
     @Test(groups = "Regression", dataProvider = "childrendata", dataProviderClass = DataProviders.class)
     void test006_VerifyChildrenAgeBox(Integer childrenCount) {
         Log.startTestCase("test006_VerifyChildrenAgeBox: " + childrenCount);

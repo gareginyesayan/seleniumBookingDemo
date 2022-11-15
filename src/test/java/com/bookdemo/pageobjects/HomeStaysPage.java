@@ -1,24 +1,20 @@
 package com.bookdemo.pageobjects;
 
 import com.bookdemo.actiondriver.MyActions;
-import com.bookdemo.base.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//public class HomeStaysPage extends BaseClass {
-public class HomeStaysPage  {
+public class HomeStaysPage {
 
 
     //    LOCATORS =========================================================================================================
@@ -28,13 +24,12 @@ public class HomeStaysPage  {
     private WebElement flightsBtn;
     @FindBy(css = "input[name='ss']")
     private WebElement destinationInput;
-//    @FindBy(css = "ul[aria-label='List of suggested destinations ']")
-//    private WebElement suggestedDestinations;
-//    @FindBy(css = "label.sb-destination-label-sr+ul")
-//    private WebElement suggestedDestinations;
+
+    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']")
+    private WebElement suggestedDestinations_other;
     @FindBy(xpath = "//input[@name='ss']/../following-sibling::ul[1]")
     private WebElement suggestedDestinations;
-    @FindBy(css = "div.xp__dates-inner:not(.xp__dates__checkin):not(.xp__dates__checkout)")
+    @FindBy(css = ".xp__dates__checkin")
     private WebElement calendarInput;
     @FindBy(xpath = "//div[@data-mode='checkout']//i[contains(@data-placeholder,'+')]")
     private WebElement checkoutDay;
@@ -47,10 +42,16 @@ public class HomeStaysPage  {
 //    private WebElement checkoutMY;
     @FindBy(id = "xp__guests__inputs-container")
     private WebElement guestdInputContainer;
-    @FindBy(id = "xp__guests__toggle")
+    @FindBy(css = ".xp__guests__count")
     private WebElement guestdInput;
+    @FindBy(css = "button[data-testid='occupancy-config']")
+    private WebElement guestdInput_other;
+
     @FindBy(xpath = "//div[contains(@class,'b-group-children')]//span[@data-bui-ref='input-stepper-value']")
     private WebElement currentChildren;  //Element name TBD!!!!!
+    @FindBy(xpath = "//input[@Id='group_children']/../div[2]")
+    private WebElement currentChildren_new;  //Element name TBD!!!!!
+
     @FindBy(xpath = "//div[contains(@class,'sb-group-children')]//button[contains(@class, 'bui-stepper__add-button')]")
     private WebElement addChildrenBtn;
     @FindBy(xpath = "//div[contains(@class,'sb-group-children')]//button[contains(@class, 'bui-stepper__subtract-button')]")
@@ -71,11 +72,20 @@ public class HomeStaysPage  {
         String xp = "//td[@data-date='" + date + "']";
         return driver.findElement(By.xpath(xp));
     }
+    private void changeToNewLocators() {
+        try {
+            guestdInput.isDisplayed();
+        } catch (NoSuchElementException e) {
+            System.out.println("changing locator");
+            guestdInput = guestdInput_other;
+            currentChildren = currentChildren_new;
+            suggestedDestinations = suggestedDestinations_other;
+        }
+    }
     //=================================================================================================================
 
     private MyActions myActions = new MyActions();
     private WebDriver driver;
-
 
 
     //  CONSTRUCTOR ========================================================================================================
@@ -83,6 +93,7 @@ public class HomeStaysPage  {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         System.out.println(driver.getTitle());
+        changeToNewLocators();
 
     }
 
@@ -91,6 +102,7 @@ public class HomeStaysPage  {
     public boolean isStaysSelected() {
         return staysBtn.getAttribute("class").contains("selected");
     }
+
 
     //Navigating to Sign In page
     public LoginPage clickOnSignIn() {
@@ -109,8 +121,12 @@ public class HomeStaysPage  {
     //Input destination by entering some key and selecting suggested choice by index
     public String inputDestination(String destination, int choice) {
         destinationInput.clear();
-//        destinationInput.click();;
         destinationInput.sendKeys(destination);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> listOfSuggestedDestinations = suggestedDestinations.findElements(By.tagName("li"));
         listOfSuggestedDestinations.get(choice).click();
         return destinationInput.getAttribute("value");
@@ -119,11 +135,23 @@ public class HomeStaysPage  {
     // Getting destination suggestions list after entering some key into destination input
     public List<String> getDestinationSuggestions(String destination) {
         myActions.type(destinationInput, destination);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> listOfSuggestedDestinations = suggestedDestinations.findElements(By.tagName("li"));
+
         List<String> suggestions = new ArrayList<>();
         for (WebElement ele : listOfSuggestedDestinations) {
-            suggestions.add(ele.getAttribute("data-label"));
+            String suggestion = ele.getAttribute("data-label");
+            if (suggestion == null) {
+                suggestion = ele.getText();
+            }
+            suggestions.add(suggestion);
+
         }
+
         return suggestions;
     }
 
@@ -167,10 +195,14 @@ public class HomeStaysPage  {
         return d;
     }
 
+
+
     //Setting number of children (max = 10) and entering their ages in the appearing age boxes
     public String setChildren(int childrenCount) {
+
         guestdInput.click();
-        int currentCount = Integer.parseInt((currentChildren).getAttribute("innerHTML"));
+        int currentCount = Integer.parseInt((currentChildren).getText());
+
         if (childrenCount >= currentCount) {
             for (int i = currentCount; i < childrenCount; i++)
                 addChildrenBtn.click();

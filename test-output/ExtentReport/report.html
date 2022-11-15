@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Booking Demo Test Automation Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Nov 1, 2022 03:07:29 PM</span></a>
+<a href="#"><span class="badge badge-primary">Nov 13, 2022 11:58:22 PM</span></a>
 </li>
 </ul>
 </div>
@@ -67,6 +67,7 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -79,9 +80,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">test003_verifySelectedDestination</p>
+            <p class="name">test001_ValidateIsStaysBtnSelected</p>
             <p class="text-sm">
-              <span>3:07:38 PM</span> / <span>00:00:01:649</span>
+              <span>11:58:33 PM</span> / <span>00:00:00:106</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -89,10 +90,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">test003_verifySelectedDestination</h5>
-<span class='badge badge-success'>11.01.2022 3:07:38 PM</span>
-<span class='badge badge-danger'>11.01.2022 3:07:39 PM</span>
-<span class='badge badge-default'>00:00:01:649</span>
+<h5 class="test-status text-pass">test001_ValidateIsStaysBtnSelected</h5>
+<span class='badge badge-success'>11.13.2022 11:58:33 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:58:33 PM</span>
+<span class='badge badge-default'>00:00:00:106</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -103,31 +104,10 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:38 PM</td>
-        <td>
-          Entering Boston as destination
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:38 PM</td>
-        <td>
-          Getting list of suggestion and selecting the first choice
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:39 PM</td>
-        <td>
-          Verifying that selected choice contains user input
-        </td>
-      </tr>
-      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>3:07:39 PM</td>
+        <td>11:58:33 PM</td>
         <td>
-          Pass Test case is: test003_verifySelectedDestination
+          Pass Test case is: test001_ValidateIsStaysBtnSelected
         </td>
       </tr>
   </tbody>
@@ -135,14 +115,83 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="2"
+        <li class="test-item"  status="fail" test-id="2"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">test003_verifySelectedDestination</p>
+            <p class="name">test002_verifySignInButton</p>
             <p class="text-sm">
-              <span>3:07:46 PM</span> / <span>00:00:01:436</span>
+              <span>11:58:39 PM</span> / <span>00:00:07:174</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">test002_verifySignInButton</h5>
+<span class='badge badge-success'>11.13.2022 11:58:39 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:58:46 PM</span>
+<span class='badge badge-default'>00:00:07:174</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div>    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='/Screenshots/test002_verifySignInButton_20221113115846.png' src="/Screenshots/test002_verifySignInButton_20221113115846.png">
+    
+    </div></div>
+<div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:58:41 PM</td>
+        <td>
+          Validating if Sign In button is displayed and clicking leads to the login page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>11:58:46 PM</td>
+        <td>
+          <span class='badge white-text red'>test002_verifySignInButton - Test Case Failed</span>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>11:58:46 PM</td>
+        <td>
+          <span class='badge white-text red'>java.lang.AssertionError: 'Sign in or create an account' is not displayed expected [true] but found [false] - Test Case Failed</span>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>11:58:46 PM</td>
+        <td>
+          ScreenShot is Attached
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='/Screenshots/test002_verifySignInButton_20221113115846.png' src="/Screenshots/test002_verifySignInButton_20221113115846.png">
+    
+    </div></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">test001_VerifyEmailInput</p>
+            <p class="text-sm">
+              <span>11:58:58 PM</span> / <span>00:00:00:045</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -150,11 +199,11 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">test003_verifySelectedDestination</h5>
-<span class='badge badge-success'>11.01.2022 3:07:46 PM</span>
-<span class='badge badge-danger'>11.01.2022 3:07:47 PM</span>
-<span class='badge badge-default'>00:00:01:436</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<h5 class="test-status text-pass">test001_VerifyEmailInput</h5>
+<span class='badge badge-success'>11.13.2022 11:58:58 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:58:58 PM</span>
+<span class='badge badge-default'>00:00:00:045</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -165,30 +214,225 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:46 PM</td>
+        <td>11:58:58 PM</td>
         <td>
-          Entering New York as destination
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:46 PM</td>
-        <td>
-          Getting list of suggestion and selecting the first choice
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>3:07:47 PM</td>
-        <td>
-          Verifying that selected choice contains user input
+          Validating email input is displayed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>3:07:47 PM</td>
+        <td>11:58:58 PM</td>
         <td>
-          Pass Test case is: test003_verifySelectedDestination
+          Pass Test case is: test001_VerifyEmailInput
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">test002_VerifySubmitEmailButton</p>
+            <p class="text-sm">
+              <span>11:59:09 PM</span> / <span>00:00:00:051</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">test002_VerifySubmitEmailButton</h5>
+<span class='badge badge-success'>11.13.2022 11:59:09 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:59:09 PM</span>
+<span class='badge badge-default'>00:00:00:051</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:09 PM</td>
+        <td>
+          Validating 'Continue with Email' button is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:59:09 PM</td>
+        <td>
+          Pass Test case is: test002_VerifySubmitEmailButton
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="5"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">test001_VerifyTripOptionsRadioGroup</p>
+            <p class="text-sm">
+              <span>11:59:22 PM</span> / <span>00:00:00:113</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">test001_VerifyTripOptionsRadioGroup</h5>
+<span class='badge badge-success'>11.13.2022 11:59:22 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:59:22 PM</span>
+<span class='badge badge-default'>00:00:00:113</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:22 PM</td>
+        <td>
+          Validating round trip radio button is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:22 PM</td>
+        <td>
+          Validating one way radio button is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:22 PM</td>
+        <td>
+          Validating multi stop radio button is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:59:22 PM</td>
+        <td>
+          Pass Test case is: test001_VerifyTripOptionsRadioGroup
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="6"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">test002_VerifyRoundTripIsSelected</p>
+            <p class="text-sm">
+              <span>11:59:30 PM</span> / <span>00:00:00:030</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">test002_VerifyRoundTripIsSelected</h5>
+<span class='badge badge-success'>11.13.2022 11:59:30 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:59:30 PM</span>
+<span class='badge badge-default'>00:00:00:030</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:30 PM</td>
+        <td>
+          Validating round trip radio button is selected
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:59:30 PM</td>
+        <td>
+          Pass Test case is: test002_VerifyRoundTripIsSelected
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">test001_VerifyBreakfastFilter</p>
+            <p class="text-sm">
+              <span>11:59:41 PM</span> / <span>00:00:07:348</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">test001_VerifyBreakfastFilter</h5>
+<span class='badge badge-success'>11.13.2022 11:59:41 PM</span>
+<span class='badge badge-danger'>11.13.2022 11:59:49 PM</span>
+<span class='badge badge-default'>00:00:07:348</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:41 PM</td>
+        <td>
+          Selecting breakfast included filter
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:59:49 PM</td>
+        <td>
+          Verifying that all properties have  "Breakfast included"
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:59:49 PM</td>
+        <td>
+          Pass Test case is: test001_VerifyBreakfastFilter
         </td>
       </tr>
   </tbody>
@@ -210,25 +454,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Nov 1, 2022 03:07:29 PM</h3>
+<h3>Nov 13, 2022 11:58:22 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Nov 1, 2022 03:07:48 PM</h3>
+<h3>Nov 13, 2022 11:59:49 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>2</h3>
+<h3>6</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 </div>
@@ -244,12 +488,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>2</b> tests passed
+<div><small data-tooltip='85%'>
+<b>6</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='14%'><b>1</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -267,10 +511,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='25%'><b>2</b> events passed</small></div>
+<div><small data-tooltip='33%'><b>6</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>6</b> others
+<small data-tooltip='16%'><b>3</b> events failed,
+<b data-tooltip='%'>9</b> others
 </small>
 </div>
 </div>
@@ -286,7 +530,7 @@
 </div></div>
 <script>
 var timeline = {
-"test003_verifySelectedDestination":1.649,"test003_verifySelectedDestination":1.436
+"test001_ValidateIsStaysBtnSelected":0.106,"test002_verifySignInButton":7.174,"test001_VerifyEmailInput":0.045,"test002_VerifySubmitEmailButton":0.051,"test001_VerifyTripOptionsRadioGroup":0.113,"test002_VerifyRoundTripIsSelected":0.03,"test001_VerifyBreakfastFilter":7.348
 };
 </script>
 <div class="row">
@@ -317,8 +561,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 2,
-failParent: 0,
+passParent: 6,
+failParent: 1,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -334,11 +578,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 2,
-failEvents: 0,
+passEvents: 6,
+failEvents: 3,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 6
+infoEvents: 9
 };
 </script>        </div>
       </div>
