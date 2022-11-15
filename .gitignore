@@ -1,2 +1,5 @@
 # Project exclude paths
 /target/
+/testng1.xml
+/.idea/
+/logs/logs.log

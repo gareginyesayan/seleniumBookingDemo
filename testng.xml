@@ -5,6 +5,13 @@
         <listener class-name="com.bookdemo.utilities.ListenerClass"></listener>
     </listeners>
     <test verbose="2" preserve-order="true" name="AllTests">
+
+        <groups>
+            <run>
+                <include name="Regression"></include>
+                <include name="Smoke"></include>
+            </run>
+        </groups>
         <classes>
             <class name="com.bookdemo.testcases.HomeStaysPageTest"/>
             <class name="com.bookdemo.testcases.LoginPageTest"/>

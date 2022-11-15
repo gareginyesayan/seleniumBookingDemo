@@ -3,6 +3,7 @@ package com.bookdemo.pageobjects;
 import com.bookdemo.actiondriver.MyActions;
 import com.bookdemo.base.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class SearchResultPage extends BaseClass {
+public class SearchResultPage {
+
+    private WebDriver driver;
 
     @FindAll(@FindBy(xpath = "//div[@data-testid='price-and-discounted-price']/span[last()]"))
     private List<WebElement> prices;
@@ -58,8 +61,9 @@ public class SearchResultPage extends BaseClass {
 
 
     //  CONSTRUCTOR ========================================================================================================
-    public SearchResultPage() {
-        PageFactory.initElements(driver, this);
+    public SearchResultPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
         System.out.println("Now on page:" + driver.getTitle());
 
     }
@@ -71,7 +75,7 @@ public class SearchResultPage extends BaseClass {
 
     public PropertyPage selectPropertyByIndex(int ind) {
         String propertyTitle = "Title";
-        return new PropertyPage();
+        return new PropertyPage(driver);
     }
 
     //Order results by price
@@ -197,7 +201,7 @@ public class SearchResultPage extends BaseClass {
                 driver.switchTo().window(h);
             }
         }
-        return new PropertyPage();
+        return new PropertyPage(driver);
 
     }
 

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import static com.bookdemo.utilities.ExtentManager.test;
 
-public class FlightsPageTest extends BaseClass {
+public class  FlightsPageTest extends BaseClass{
 
 
 
@@ -24,7 +24,7 @@ public class FlightsPageTest extends BaseClass {
     public void setup() {
 
         launchApp();
-        staysPage = new HomeStaysPage();
+        staysPage = new HomeStaysPage(driver);
         flightsPage = staysPage.clickOnFlightsBtn();
 
     }

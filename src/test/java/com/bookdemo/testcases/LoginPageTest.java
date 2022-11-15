@@ -22,7 +22,7 @@ public class LoginPageTest extends BaseClass {
     public void setup() {
 
         launchApp();
-        staysPage = new HomeStaysPage();
+        staysPage = new HomeStaysPage(driver);
         loginPage = staysPage.clickOnSignIn();
 
     }

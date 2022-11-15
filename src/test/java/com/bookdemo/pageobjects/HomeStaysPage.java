@@ -1,8 +1,9 @@
 package com.bookdemo.pageobjects;
 
 import com.bookdemo.actiondriver.MyActions;
-import com.bookdemo.base.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeStaysPage extends BaseClass {
+public class HomeStaysPage {
 
 
     //    LOCATORS =========================================================================================================
@@ -21,34 +22,40 @@ public class HomeStaysPage extends BaseClass {
     private WebElement staysBtn;
     @FindBy(xpath = "//span[contains(text(), 'Flights')]/ancestor::a")
     private WebElement flightsBtn;
-    @FindBy(css = "input#ss")
+    @FindBy(css = "input[name='ss']")
     private WebElement destinationInput;
-    @FindBy(css = "ul[aria-label='List of suggested destinations ']")
+
+    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']")
+    private WebElement suggestedDestinations_other;
+    @FindBy(xpath = "//input[@name='ss']/../following-sibling::ul[1]")
     private WebElement suggestedDestinations;
-    @FindBy(css = "div.xp__dates-inner:not(.xp__dates__checkin):not(.xp__dates__checkout)")
+    @FindBy(css = ".xp__dates__checkin")
     private WebElement calendarInput;
+    @FindBy(xpath = "//button[@data-testid = 'date-display-field-start']")
+    private WebElement calendarInputNew;
     @FindBy(xpath = "//div[@data-mode='checkout']//i[contains(@data-placeholder,'+')]")
     private WebElement checkoutDay;
     @FindBy(xpath = "//div[@data-mode='checkin']//i[contains(@data-placeholder,'+')]")
     private WebElement checkinDay;
-    //
-//    @FindBy(xpath = "//span[contains(@data-placeholder,'Check-in month')]")
-//    private WebElement checkinMY;
-//    @FindBy(xpath = "//span[contains(@data-placeholder,'Check-out month')]")
-//    private WebElement checkoutMY;
     @FindBy(id = "xp__guests__inputs-container")
     private WebElement guestdInputContainer;
-    @FindBy(id = "xp__guests__toggle")
+    @FindBy(css = ".xp__guests__count")
     private WebElement guestdInput;
+    @FindBy(xpath = "//button[@data-testid = 'occupancy-config']")
+    private WebElement guestdInputNew;
+    @FindBy(css = "button[data-testid='occupancy-config']")
+    private WebElement guestdInput_other;
+
     @FindBy(xpath = "//div[contains(@class,'b-group-children')]//span[@data-bui-ref='input-stepper-value']")
     private WebElement currentChildren;  //Element name TBD!!!!!
+    @FindBy(xpath = "//input[@Id='group_children']/../div[2]")
+    private WebElement currentChildren_new;  //Element name TBD!!!!!
+
     @FindBy(xpath = "//div[contains(@class,'sb-group-children')]//button[contains(@class, 'bui-stepper__add-button')]")
     private WebElement addChildrenBtn;
     @FindBy(xpath = "//div[contains(@class,'sb-group-children')]//button[contains(@class, 'bui-stepper__subtract-button')]")
     private WebElement subtractChildrenBtn;
 
-    //    @FindBy(xpath = "//select[@name='age']")  //Usage may be wrong --> Verify later!!!!!!
-//    private WebElement ageSelect;
     @FindAll(@FindBy(xpath = "//select[@name='age']"))
     private List<WebElement> childrenAgeSelect;
     @FindBy(xpath = "//span[@data-children-count]")
@@ -59,18 +66,37 @@ public class HomeStaysPage extends BaseClass {
     private WebElement searchBtn;
 
     public WebElement getCalendarElementByDate(String date) {
-        String xp = "//td[@data-date='" + date + "']";
+        String xp = "//*[@data-date='" + date + "']";
         return driver.findElement(By.xpath(xp));
+    }
+    //This wierd method is needed to fix some issues with locators where different home pages are loading intermittently
+    //Fixing this in such non-usual way because no  possibility to discuss this with dev team
+    private void changeToNewLocators() {
+        try {
+            // trying to see if old page has been launched
+            guestdInput.isDisplayed();
+        } catch (NoSuchElementException e) {
+           // if not then changing to locators matching new page
+            System.out.println("changing locator");
+            guestdInput = guestdInput_other;
+            currentChildren = currentChildren_new;
+            suggestedDestinations = suggestedDestinations_other;
+            calendarInput = calendarInputNew;
+            guestdInput = guestdInputNew;
+        }
     }
     //=================================================================================================================
 
     private MyActions myActions = new MyActions();
+    private WebDriver driver;
 
 
     //  CONSTRUCTOR ========================================================================================================
-    public HomeStaysPage() {
-        PageFactory.initElements(driver, this);
+    public HomeStaysPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
         System.out.println(driver.getTitle());
+        changeToNewLocators();
 
     }
 
@@ -80,24 +106,30 @@ public class HomeStaysPage extends BaseClass {
         return staysBtn.getAttribute("class").contains("selected");
     }
 
+
     //Navigating to Sign In page
     public LoginPage clickOnSignIn() {
 
         myActions.click(driver, SignInBtn);
-        return new LoginPage();
+        return new LoginPage(driver);
     }
 
     //Navigating to Flights  page
     public FlightsPage clickOnFlightsBtn() {
 
         myActions.click(driver, flightsBtn);
-        return new FlightsPage();
+        return new FlightsPage(driver);
     }
 
     //Input destination by entering some key and selecting suggested choice by index
     public String inputDestination(String destination, int choice) {
         destinationInput.clear();
         destinationInput.sendKeys(destination);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> listOfSuggestedDestinations = suggestedDestinations.findElements(By.tagName("li"));
         listOfSuggestedDestinations.get(choice).click();
         return destinationInput.getAttribute("value");
@@ -106,11 +138,23 @@ public class HomeStaysPage extends BaseClass {
     // Getting destination suggestions list after entering some key into destination input
     public List<String> getDestinationSuggestions(String destination) {
         myActions.type(destinationInput, destination);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> listOfSuggestedDestinations = suggestedDestinations.findElements(By.tagName("li"));
+
         List<String> suggestions = new ArrayList<>();
         for (WebElement ele : listOfSuggestedDestinations) {
-            suggestions.add(ele.getAttribute("data-label"));
+            String suggestion = ele.getAttribute("data-label");
+            if (suggestion == null) {
+                suggestion = ele.getText();
+            }
+            suggestions.add(suggestion);
+
         }
+
         return suggestions;
     }
 
@@ -154,10 +198,14 @@ public class HomeStaysPage extends BaseClass {
         return d;
     }
 
+
+
     //Setting number of children (max = 10) and entering their ages in the appearing age boxes
     public String setChildren(int childrenCount) {
+
         guestdInput.click();
-        int currentCount = Integer.parseInt((currentChildren).getAttribute("innerHTML"));
+        int currentCount = Integer.parseInt((currentChildren).getText());
+
         if (childrenCount >= currentCount) {
             for (int i = currentCount; i < childrenCount; i++)
                 addChildrenBtn.click();
@@ -182,7 +230,7 @@ public class HomeStaysPage extends BaseClass {
         inputDestination(destination, 0);
         setDates(checkin, checkout);
         searchBtn.click();
-        return new SearchResultPage();
+        return new SearchResultPage(driver);
     }
 
 
