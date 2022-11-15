@@ -31,19 +31,18 @@ public class HomeStaysPage {
     private WebElement suggestedDestinations;
     @FindBy(css = ".xp__dates__checkin")
     private WebElement calendarInput;
+    @FindBy(xpath = "//button[@data-testid = 'date-display-field-start']")
+    private WebElement calendarInputNew;
     @FindBy(xpath = "//div[@data-mode='checkout']//i[contains(@data-placeholder,'+')]")
     private WebElement checkoutDay;
     @FindBy(xpath = "//div[@data-mode='checkin']//i[contains(@data-placeholder,'+')]")
     private WebElement checkinDay;
-    //
-//    @FindBy(xpath = "//span[contains(@data-placeholder,'Check-in month')]")
-//    private WebElement checkinMY;
-//    @FindBy(xpath = "//span[contains(@data-placeholder,'Check-out month')]")
-//    private WebElement checkoutMY;
     @FindBy(id = "xp__guests__inputs-container")
     private WebElement guestdInputContainer;
     @FindBy(css = ".xp__guests__count")
     private WebElement guestdInput;
+    @FindBy(xpath = "//button[@data-testid = 'occupancy-config']")
+    private WebElement guestdInputNew;
     @FindBy(css = "button[data-testid='occupancy-config']")
     private WebElement guestdInput_other;
 
@@ -57,8 +56,6 @@ public class HomeStaysPage {
     @FindBy(xpath = "//div[contains(@class,'sb-group-children')]//button[contains(@class, 'bui-stepper__subtract-button')]")
     private WebElement subtractChildrenBtn;
 
-    //    @FindBy(xpath = "//select[@name='age']")  //Usage may be wrong --> Verify later!!!!!!
-//    private WebElement ageSelect;
     @FindAll(@FindBy(xpath = "//select[@name='age']"))
     private List<WebElement> childrenAgeSelect;
     @FindBy(xpath = "//span[@data-children-count]")
@@ -69,17 +66,23 @@ public class HomeStaysPage {
     private WebElement searchBtn;
 
     public WebElement getCalendarElementByDate(String date) {
-        String xp = "//td[@data-date='" + date + "']";
+        String xp = "//*[@data-date='" + date + "']";
         return driver.findElement(By.xpath(xp));
     }
+    //This wierd method is needed to fix some issues with locators where different home pages are loading intermittently
+    //Fixing this in such non-usual way because no  possibility to discuss this with dev team
     private void changeToNewLocators() {
         try {
+            // trying to see if old page has been launched
             guestdInput.isDisplayed();
         } catch (NoSuchElementException e) {
+           // if not then changing to locators matching new page
             System.out.println("changing locator");
             guestdInput = guestdInput_other;
             currentChildren = currentChildren_new;
             suggestedDestinations = suggestedDestinations_other;
+            calendarInput = calendarInputNew;
+            guestdInput = guestdInputNew;
         }
     }
     //=================================================================================================================

@@ -53,7 +53,7 @@ public class SearchResultPageTest extends BaseClass {
 
 
     // Verifying Breakfast included filter functionality.
-    // Selecting filter and verifyimg that all properties on page have "Breakfast included" label
+    // Selecting filter and verifying that all properties on page have "Breakfast included" label
     @Test(groups = {"Regression", "Smoke"})
     public void test001_VerifyBreakfastFilter(){
 
@@ -94,7 +94,7 @@ public class SearchResultPageTest extends BaseClass {
     // Verifying budget filter.
     // Selecting the filter.
     // Getting prices for all properties on the page.
-    // Verifying that all peices are in the selected budget limits.
+    // Verifying that all prices are in the selected budget limits.
     // This test can fail because of not valid index. Requirements to number of budget filters are needed. 
     // Actually SkipException should be used in case if provided index is not valid. But for now to make indexes valid change destination
     @Test (groups = "Regression", dataProvider = "Indexes", dataProviderClass = DataProviders.class)
